@@ -95,6 +95,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)cellClassFromObject:(id)object {
+  if (nil == object) {
+    return nil;
+  }
   Class objectClass = [object class];
   Class cellClass = [self.objectToCellMap objectForKey:objectClass];
 
@@ -228,7 +231,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface NICellObject()
 @property (nonatomic, assign) Class cellClass;
-@property (nonatomic, retain) id userInfo;
+@property (nonatomic, NI_STRONG) id userInfo;
 @end
 
 

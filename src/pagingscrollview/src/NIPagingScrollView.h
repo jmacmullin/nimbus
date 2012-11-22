@@ -52,8 +52,8 @@ typedef enum {
 #pragma mark Data Source
 
 - (void)reloadData;
-@property (nonatomic, weak) id<NIPagingScrollViewDataSource> dataSource;
-@property (nonatomic, weak) id<NIPagingScrollViewDelegate> delegate;
+@property (nonatomic, NI_WEAK) id<NIPagingScrollViewDataSource> dataSource;
+@property (nonatomic, NI_WEAK) id<NIPagingScrollViewDelegate> delegate;
 
 // It is highly recommended that you use this method to manage view recycling.
 - (UIView<NIPagingScrollViewPage> *)dequeueReusablePageWithIdentifier:(NSString *)identifier;
@@ -85,11 +85,8 @@ typedef enum {
 
 #pragma mark Subclassing
 
-@property (nonatomic, readonly, retain) UIScrollView* pagingScrollView;
+@property (nonatomic, readonly, NI_STRONG) UIScrollView* pagingScrollView;
 @property (nonatomic, readonly, copy) NSMutableSet* visiblePages; // Set of UIView<NIPagingScrollViewPage>*
-
-- (void)willDisplayPage:(UIView<NIPagingScrollViewPage> *)pageView;
-- (void)didRecyclePage:(UIView<NIPagingScrollViewPage> *)pageView;
 
 @end
 
@@ -270,20 +267,4 @@ typedef enum {
  * Meant to be used by subclasses only.
  *
  *      @fn NIPagingScrollView::visiblePages
- */
-
-/**
- * Called before the page is about to be shown and after its frame has been set.
- *
- * Meant to be subclassed. By default this method does nothing.
- *
- *      @fn NIPagingScrollView::willDisplayPage:
- */
-
-/**
- * Called immediately after the page is removed from the paging scroll view.
- *
- * Meant to be subclassed. By default this method does nothing.
- *
- *      @fn NIPagingScrollView::didRecyclePage:
  */
